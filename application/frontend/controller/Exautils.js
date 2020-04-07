@@ -5,7 +5,7 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'SdpStlUtilStore',
 		'SdpSbyUtilStore',
 		'CrmJtnUtilStore',
-		'CrmStlUtilStore',
+		'CrmStlUtilStore',	
 		'SdpJtnDataStore',
 		'SdpStlDataStore',
 		'SdpSbyDataStore',
@@ -13,7 +13,7 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'CrmStlDataStore',
 		'SdpUtilsStore',
 		'CrmUtilsStore',
-		'SdpUtilsHistStore',
+		'UtilsHistStore',
 		'CrmUtilsHistStore'
 	],
 	
@@ -30,7 +30,7 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'CrmStlDataModel',
 		'SdpUtilsModel',
 		'CrmUtilsModel',
-		'SdpUtilsHistModel',
+		'UtilsHistModel',
 		'CrmUtilsHistModel'
 	],
 	
@@ -58,6 +58,7 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'exautils.overview.CrmVcpuUtils',
 		'exautils.overview.CrmMemUtils',
 		'exautils.overview.CrmZfssaUtils',
+		'exautils.overview.CrmVcpuUtilsHist',
 		'exautils.sdpjtn.SdpJtnVcpuPanel',
 		'exautils.sdpjtn.SdpJtnMemPanel',
 		'exautils.sdpjtn.SdpJtnDataPanel',

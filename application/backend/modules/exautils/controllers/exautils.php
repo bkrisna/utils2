@@ -53,15 +53,14 @@ class Exautils extends MY_Controller {
 	}
 	
 	public function get_sdp_utils_hist() {
-	    
-	    $count = $this->Exautils_model->get_box_utils_hist_count("SDP");
-	    $entries = $this->Exautils_model->get_box_utils_hist("SDP");
-
+		$res = $this->Exautils_model->get_vcpu_util_hist();
+		$count = isset($res) ? count($res) : 0;
+	    $entries = $res;
 	    $data['success'] = true;
 	    $data['total'] = $count;
 	    $data['items'] = $entries;
-
-	    extjs_output($data);
+		extjs_output($data);
+	   
 	}
 	
 	public function get_crm_utils() {

@@ -1,7 +1,7 @@
-Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
+Ext.define('CImeetsExtJS.view.exautils.overview.CrmVcpuUtilsHist', {
 
     extend: 'Ext.panel.Panel',
-    alias: 'widget.sdpvcpuutilshist',
+    alias: 'widget.crmvcpuutilshist',
 
     requires: [
 		'Ext.data.JsonStore',
@@ -28,7 +28,7 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 	                type: 'Numeric',
 	                minimum: 0,
 	                position: 'left',
-	                fields: ['SDP-SB_used_vcpu', 'SDP-JTN_used_vcpu'],
+	                fields: ['CRM-JTN_used_vcpu', 'CRM-STL_used_vcpu'],
 	                minorTickSteps: 1,
 					title: false,
 	                grid: {
@@ -42,7 +42,7 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 	            }, {
 	                type: 'Category',
 	                position: 'bottom',
-	                fields: ['report_alias']
+	                fields: ['report_id']
 	            }],
 	            series: [{
 	                type: 'line',
@@ -52,7 +52,7 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 	                },
 	                axis: 'left',
 	                xField: 'report_id',
-	                yField: ['SDP-SB_used_vcpu']
+	                yField: ['CRM-JTN_used_vcpu']
 	            },{
 	                type: 'line',
 	                highlight: {
@@ -61,7 +61,7 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 	                },
 	                axis: 'left',
 	                xField: 'report_id',
-	                yField: ['SDP-JTN_used_vcpu']
+	                yField: ['CRM-STL_used_vcpu']
 	            }]
 			}
         });

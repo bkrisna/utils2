@@ -18,10 +18,24 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					border: false
 				}]
 	        },{
+	            id: 'portlet-12',
+				title: 'SDP vCPU Hist',
+				items: [{
+					xtype: 'sdpvcpuutilshist',
+					border: false
+				}]
+	        },{
 	            id: 'portlet-13',
 				title: 'CRM vCPU Utilization',
 				items: [{
 					xtype: 'crmvcpuutils',
+					border: false
+				}]
+	        },{
+	            id: 'portlet-14',
+				title: 'CRM vCPU Hist',
+				items: [{
+					xtype: 'crmvcpuutilshist',
 					border: false
 				}]
 	        }]

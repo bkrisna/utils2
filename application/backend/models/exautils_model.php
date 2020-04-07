@@ -191,4 +191,29 @@ class Exautils_model extends CI_Model {
 			return NULL;
 		}
 	}
+	
+	function get_vcpu_util_hist() {
+		$qs = "SELECT box_utils.*, utils_report.report_alias, zfssa_data.used_size as used_zfssa, zfssa_data.free_size as free_zfssa FROM utilsdb.box_utils JOIN utils_report ON box_utils.report_id = utils_report.report_id JOIN zfssa_data ON box_utils.box_id = zfssa_data.box_id AND box_utils.report_id = zfssa_data.report_id ORDER BY box_utils.report_id, box_utils.box_id";
+		$query = $this->db->query($qs);
+		if ($query->num_rows() > 0) {
+			$res = array();
+			foreach ($query->result() as $itm) {
+				$vcpu_key = $itm->box_alias . "_used_vcpu";
+				$mem_key = $itm->box_alias . "_used_mem";
+				$zfssa_key = $itm->box_alias . "_used_zfssa";
+				$res[$itm->report_id]['report_id'] = $itm->report_id;
+				$res[$itm->report_id]['report_alias'] = $itm->report_alias;
+				$res[$itm->report_id] = array_merge($res[$itm->report_id], array($vcpu_key => $itm->used_box_vcpu, $mem_key => $itm->used_box_mem, $zfssa_key => $itm->used_zfssa));
+			}
+			
+			$res2 = array();
+			foreach ($res as $res_itm) {
+				array_push($res2, $res_itm);
+			}
+			return $res2;
+			//return $query->result();
+		} else {
+			return NULL;
+		}
+	}
 }
