@@ -21,8 +21,20 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 	            id: 'portlet-12',
 				title: 'SDP vCPU Hist',
 				items: [{
-					xtype: 'sdpvcpuutilshist',
-					border: false
+					xtype: 'utils3fieldhist',
+					border: false,
+					store: 'UtilsHistStore',
+					axes_field: ['SDP-SB_used_vcpu', 'SDP-JTN_used_vcpu', 'SDP-STL_used_vcpu'],
+					cat_fields: ['report_alias'],
+					s1_tile: 'SDP-SB',
+					s1_xfield: 'report_id',
+					s1_yfield: 'SDP-SB_used_vcpu',
+					s2_tile: 'SDP-JTN',
+					s2_xfield: 'report_id',
+					s2_yfield: 'SDP-JTN_used_vcpu',
+					s3_tile: 'SDP-STL',
+					s3_xfield: 'report_id',
+					s3_yfield: 'SDP-STL_used_vcpu'
 				}]
 	        },{
 	            id: 'portlet-13',

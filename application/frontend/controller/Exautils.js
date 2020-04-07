@@ -13,8 +13,7 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'CrmStlDataStore',
 		'SdpUtilsStore',
 		'CrmUtilsStore',
-		'UtilsHistStore',
-		'CrmUtilsHistStore'
+		'UtilsHistStore'
 	],
 	
     models:	[
@@ -30,8 +29,7 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'CrmStlDataModel',
 		'SdpUtilsModel',
 		'CrmUtilsModel',
-		'UtilsHistModel',
-		'CrmUtilsHistModel'
+		'UtilsHistModel'
 	],
 	
     views: 	[
@@ -78,7 +76,8 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'exautils.crmstl.CrmStlVcpuPanel',
 		'exautils.crmstl.CrmStlMemPanel',
 		'exautils.crmstl.CrmStlDataPanel',
-		'exautils.crmstl.CrmStlSrvPanel'
+		'exautils.crmstl.CrmStlSrvPanel',
+		'exautils.overview.Utils3FieldHist',
 	],
 
     refs: [{
