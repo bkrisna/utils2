@@ -1,7 +1,16 @@
-Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
+Ext.define('CImeetsExtJS.view.exautils.template.LineChart2Field', {
 
     extend: 'Ext.panel.Panel',
-    alias: 'widget.sdpvcpuutilshist',
+    alias: 'widget.linechart2field',
+	store: '',
+	axes_field: [],
+	cat_fields: [],
+	s1_tile: '',
+	s1_xfield: '',
+	s1_yfield: '',
+	s2_tile: '',
+	s2_xfield: '',
+	s2_yfield: '',
 
     requires: [
 		'Ext.data.JsonStore',
@@ -15,11 +24,11 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 		
         Ext.apply(this, {
             layout: 'fit',
-            height: 200,
+            height: this.height,
             items: {
 				xtype: 'chart',
 	            animate: true,
-	            store: 'UtilsHistStore',
+	            store: this.store,
 	            shadow: true,
 	            legend: {
 	                position: 'bottom'
@@ -28,7 +37,7 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 	                type: 'Numeric',
 	                minimum: 0,
 	                position: 'left',
-	                fields: ['SDP-SB_used_vcpu', 'SDP-JTN_used_vcpu', 'SDP-STL_used_vcpu'],
+	                fields: this.axes_field,
 	                minorTickSteps: 1,
 					title: false,
 	                grid: {
@@ -42,63 +51,50 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtilsHist', {
 	            }, {
 	                type: 'Category',
 	                position: 'bottom',
-	                fields: ['report_alias']
+	                fields: [ this.cat_fields ]
 	            }],
 	            series: [{
-					title: ['SDP-SB'],
+					title: [this.s1_title],
 	                type: 'line',
 	                highlight: {
 	                    size: 7,
 	                    radius: 7
 	                },
 	                axis: 'left',
-	                xField: 'report_id',
-	                yField: ['SDP-SB_used_vcpu'],
+	                xField: this.s1_xfield,
+	                yField: [this.s1_yfield],
 					tips: {
 	                    trackMouse: true,
 	                    width: 120,
 	                    height: 40,
+						hdata1: this.cat_fields,
+						hdata2: this.s1_title,
+						bdata1: this.s1_yfield,
 	                    renderer: function(storeItem, item) {
-	                        this.setTitle(storeItem.get('report_alias') + ' - SDP-SB');
-	                        this.update(storeItem.get('SDP-SB_used_vcpu'));
+	                        this.setTitle(storeItem.get(this.hdata1) + ' - ' + this.hdata2);
+	                        this.update(storeItem.get(this.bdata1));
 	                    }
 	                }
 	            },{
-					title: ['SDP-JTN'],
+					title: [this.s2_title],
 	                type: 'line',
 	                highlight: {
 	                    size: 7,
 	                    radius: 7
 	                },
 	                axis: 'left',
-	                xField: 'report_id',
-	                yField: ['SDP-JTN_used_vcpu'],
+	                xField: this.s2_xfield,
+	                yField: [this.s2_yfield],
 					tips: {
 	                    trackMouse: true,
 	                    width: 120,
 	                    height: 40,
+						hdata1: this.cat_fields,
+						hdata2: this.s2_title,
+						bdata1: this.s2_yfield,
 	                    renderer: function(storeItem, item) {
-	                        this.setTitle(storeItem.get('report_alias') + ' - SDP-JTN');
-	                        this.update(storeItem.get('SDP-JTN_used_vcpu'));
-	                    }
-	                }
-	            },{
-					title: ['SDP-STL'],
-	                type: 'line',
-	                highlight: {
-	                    size: 7,
-	                    radius: 7
-	                },
-	                axis: 'left',
-	                xField: 'report_id',
-	                yField: ['SDP-STL_used_vcpu'],
-					tips: {
-	                    trackMouse: true,
-	                    width: 120,
-	                    height: 40,
-	                    renderer: function(storeItem, item) {
-	                        this.setTitle(storeItem.get('report_alias') + ' - SDP-STL');
-	                        this.update(storeItem.get('SDP-STL_used_vcpu'));
+	                        this.setTitle(storeItem.get(this.hdata1) + ' - ' + this.hdata2);
+	                        this.update(storeItem.get(this.bdata1));
 	                    }
 	                }
 	            }]

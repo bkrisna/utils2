@@ -1,7 +1,7 @@
-Ext.define('CImeetsExtJS.view.exautils.overview.Utils3FieldHist', {
+Ext.define('CImeetsExtJS.view.exautils.template.LineChart3Field', {
 
     extend: 'Ext.panel.Panel',
-    alias: 'widget.utils3fieldhist',
+    alias: 'widget.linechart3field',
 	store: '',
 	axes_field: [],
 	cat_fields: [],
@@ -34,7 +34,7 @@ Ext.define('CImeetsExtJS.view.exautils.overview.Utils3FieldHist', {
 	            store: this.store,
 	            shadow: true,
 	            legend: {
-	                position: 'right'
+	                position: 'bottom'
 	            },
 	            axes: [{
 	                type: 'Numeric',
@@ -70,9 +70,12 @@ Ext.define('CImeetsExtJS.view.exautils.overview.Utils3FieldHist', {
 	                    trackMouse: true,
 	                    width: 120,
 	                    height: 40,
+						hdata1: this.cat_fields,
+						hdata2: this.s1_title,
+						bdata1: this.s1_yfield,
 	                    renderer: function(storeItem, item) {
-	                        this.setTitle(storeItem.get(this.cat_fields) + ' - ' + this.s1_title);
-	                        this.update(storeItem.get(this.s1_yfield));
+	                        this.setTitle(storeItem.get(this.hdata1) + ' - ' + this.hdata2);
+	                        this.update(storeItem.get(this.bdata1));
 	                    }
 	                }
 	            },{
@@ -89,9 +92,12 @@ Ext.define('CImeetsExtJS.view.exautils.overview.Utils3FieldHist', {
 	                    trackMouse: true,
 	                    width: 120,
 	                    height: 40,
+						hdata1: this.cat_fields,
+						hdata2: this.s2_title,
+						bdata1: this.s2_yfield,
 	                    renderer: function(storeItem, item) {
-	                        this.setTitle(storeItem.get(this.cat_fields) + ' - ' + this.s2_title);
-	                        this.update(storeItem.get(this.s2_yfield));
+	                        this.setTitle(storeItem.get(this.hdata1) + ' - ' + this.hdata2);
+	                        this.update(storeItem.get(this.bdata1));
 	                    }
 	                }
 	            },{
@@ -108,9 +114,12 @@ Ext.define('CImeetsExtJS.view.exautils.overview.Utils3FieldHist', {
 	                    trackMouse: true,
 	                    width: 120,
 	                    height: 40,
+						hdata1: this.cat_fields,
+						hdata2: this.s2_title,
+						bdata1: this.s2_yfield,
 	                    renderer: function(storeItem, item) {
-	                        this.setTitle(storeItem.get(this.cat_fields) + ' - ' + this.s3_title);
-	                        this.update(storeItem.get(this.s3_yfield));
+	                        this.setTitle(storeItem.get(this.hdata1) + ' - ' + this.hdata2);
+	                        this.update(storeItem.get(this.bdata1));
 	                    }
 	                }
 	            }]

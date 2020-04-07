@@ -77,7 +77,8 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'exautils.crmstl.CrmStlMemPanel',
 		'exautils.crmstl.CrmStlDataPanel',
 		'exautils.crmstl.CrmStlSrvPanel',
-		'exautils.overview.Utils3FieldHist',
+		'exautils.template.LineChart3Field',
+		'exautils.template.LineChart2Field'
 	],
 
     refs: [{
