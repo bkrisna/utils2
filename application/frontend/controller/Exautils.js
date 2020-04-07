@@ -49,14 +49,6 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'exautils.maincontent.SdpSbyPanel',
 		'exautils.maincontent.CrmJtnPanel',
 		'exautils.maincontent.CrmStlPanel',
-		'exautils.overview.SdpVcpuUtils',
-		'exautils.overview.SdpMemUtils',
-		'exautils.overview.SdpZfssaUtils',
-		'exautils.overview.SdpVcpuUtilsHist',
-		'exautils.overview.CrmVcpuUtils',
-		'exautils.overview.CrmMemUtils',
-		'exautils.overview.CrmZfssaUtils',
-		'exautils.overview.CrmVcpuUtilsHist',
 		'exautils.sdpjtn.SdpJtnVcpuPanel',
 		'exautils.sdpjtn.SdpJtnMemPanel',
 		'exautils.sdpjtn.SdpJtnDataPanel',
@@ -78,7 +70,8 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'exautils.crmstl.CrmStlDataPanel',
 		'exautils.crmstl.CrmStlSrvPanel',
 		'exautils.template.LineChart3Field',
-		'exautils.template.LineChart2Field'
+		'exautils.template.LineChart2Field',
+		'exautils.template.StackedBarChart'
 	],
 
     refs: [{

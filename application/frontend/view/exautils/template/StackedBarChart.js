@@ -1,13 +1,20 @@
-Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtils', {
+Ext.define('CImeetsExtJS.view.exautils.template.StackedBarChart', {
 
     extend: 'Ext.panel.Panel',
-    alias: 'widget.sdpvcpuutils',
+    alias: 'widget.stackedbarchart',
+	store: '',
+	axes_field: [],
+	cat_fields: [],
+	field_tile: '',
+	xfield: '',
+	yfield: [],
+	yfield_data: [],
+	series_label_convert: '',
 
     requires: [
 		'Ext.data.JsonStore',
         'Ext.chart.theme.Base',
         'Ext.chart.series.Series',
-        'Ext.chart.series.Line',
         'Ext.chart.axis.Numeric'
     ],
 	
@@ -15,19 +22,19 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtils', {
 		
         Ext.apply(this, {
             layout: 'fit',
-            height: 300,
+            height: this.height,
             items: {
                 xtype: 'chart',
 	            animate: true,
 	            shadow: true,
-				store: 'SdpUtilsStore',
+				store: this.store,
 	            legend: {
 	                position: 'bottom'
 	            },
 	            axes: [{
 	                type: 'Numeric',
 	                position: 'bottom',
-	                fields: ['used_vcpu_pct', 'free_vcpu_pct'],
+	                fields: this.axes_field,
 	                title: false,
 	                grid: true,
 					label: {
@@ -38,23 +45,38 @@ Ext.define('CImeetsExtJS.view.exautils.overview.SdpVcpuUtils', {
 	            }, {
 	                type: 'Category',
 	                position: 'left',
-	                fields: ['box_alias'],
+	                fields: [ this.cat_fields ],
 	                title: false
 	            }],
 	            series: [{
-					title: ['Used vCPU', 'Free vCPU'],
+					title: this.field_tile,
 	                type: 'bar',
 	                axis: 'bottom',
 	                gutter: 80,
-	                xField: 'box_name',
-	                yField: ['used_vcpu_pct', 'free_vcpu_pct'],
+	                xField: this.xfield,
+	                yField: this.yfield,
 	                stacked: true,
 					label: {
 		                contrast: true,
 		                display: 'insideEnd',
-		                field: ['used_vcpu', 'free_vcpu'],
+		                field: this.yfield_data,
 		                color: '#000',
-		                'text-anchor': 'middle'
+		                'text-anchor': 'middle',
+						label_convert: this.series_label_convert,
+						renderer: function(value, label, storeItem, item, i, display, animate, index) {
+							if (label['label_convert'] == 'MB-TB') {
+								return +(Math.round((value/(1024*1024)) + "e+2") + "e-2") + ' TB';
+							}
+							if (label['label_convert'] == 'MB-GB') {
+								return +(Math.round((value/(1024)) + "e+2") + "e-2") + ' GB';
+							}
+							if (label['label_convert'] == 'GB-TB') {
+								return +(Math.round((value/(1024)) + "e+2") + "e-2") + ' TB';
+							}
+							else {
+								return value
+							}
+						}
 		            },
 	                tips: {
 	                    trackMouse: true,

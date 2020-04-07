@@ -14,8 +14,16 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 	            id: 'portlet-11',
 				title: 'SDP vCPU Utilization',
 				items: [{
-					xtype: 'sdpvcpuutils',
-					border: false
+					xtype: 'stackedbarchart',
+					border: false,
+					height: 300,
+					store: 'SdpUtilsStore',
+					axes_field: ['used_vcpu_pct', 'free_vcpu_pct'],
+					cat_fields: ['box_alias'],
+					field_tile: ['Used vCPU', 'Free vCPU'],
+					xfield: 'box_name',
+					yfield: ['used_vcpu_pct', 'free_vcpu_pct'],
+					yfield_data: ['used_vcpu', 'free_vcpu']
 				}]
 	        },{
 	            id: 'portlet-12',
@@ -23,6 +31,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart3field',
 					border: false,
+					height: 200,
 					store: 'UtilsHistStore',
 					axes_field: ['SDP-SB_used_vcpu', 'SDP-JTN_used_vcpu', 'SDP-STL_used_vcpu'],
 					cat_fields: ['report_alias'],
@@ -40,8 +49,16 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 	            id: 'portlet-13',
 				title: 'CRM vCPU Utilization',
 				items: [{
-					xtype: 'crmvcpuutils',
-					border: false
+					xtype: 'stackedbarchart',
+					border: false,
+					height: 300,
+					store: 'CrmUtilsStore',
+					axes_field: ['used_vcpu_pct', 'free_vcpu_pct'],
+					cat_fields: ['box_alias'],
+					field_tile: ['Used vCPU', 'Free vCPU'],
+					xfield: 'box_name',
+					yfield: ['used_vcpu_pct', 'free_vcpu_pct'],
+					yfield_data: ['used_vcpu', 'free_vcpu']
 				}]
 	        },{
 	            id: 'portlet-14',
@@ -65,17 +82,27 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 	    	id: 'col-2',
 			items: [{
 	            id: 'portlet-21',
-				title: 'SDP MEM Utilization',
+				title: 'SDP Memory Utilization',
 				items: [{
-					xtype: 'sdpmemutils',
-					border: false
+					xtype: 'stackedbarchart',
+					border: false,
+					height: 300,
+					series_label_convert: 'MB-TB',
+					store: 'SdpUtilsStore',
+					axes_field: ['used_mem_pct', 'free_mem_pct'],
+					cat_fields: ['box_alias'],
+					field_tile: ['Used MEM', 'Free MEM'],
+					xfield: 'box_name',
+					yfield: ['used_mem_pct', 'free_mem_pct'],
+					yfield_data: ['used_mem', 'free_mem']
 				}]
-			},{
-	            id: 'portlet-23',
+	        },{
+	            id: 'portlet-22',
 				title: 'SDP MEM History',
 				items: [{
 					xtype: 'linechart3field',
 					border: false,
+					height: 200,
 					store: 'UtilsHistStore',
 					axes_field: ['SDP-SB_used_mem', 'SDP-JTN_used_mem', 'SDP-STL_used_mem'],
 					cat_fields: ['report_alias'],
@@ -90,13 +117,22 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s3_yfield: 'SDP-STL_used_mem'
 				}]
 	        },{
-	            id: 'portlet-22',
-				title: 'CRM MEM Utilization',
+	            id: 'portlet-23',
+				title: 'CRM Memory Utilization',
 				items: [{
-					xtype: 'crmmemutils',
-					border: false
+					xtype: 'stackedbarchart',
+					border: false,
+					height: 300,
+					series_label_convert: 'MB-TB',
+					store: 'CrmUtilsStore',
+					axes_field: ['used_mem_pct', 'free_mem_pct'],
+					cat_fields: ['box_alias'],
+					field_tile: ['Used MEM', 'Free MEM'],
+					xfield: 'box_name',
+					yfield: ['used_mem_pct', 'free_mem_pct'],
+					yfield_data: ['used_mem', 'free_mem']
 				}]
-			},{
+	        },{
 	            id: 'portlet-24',
 				title: 'CRM MEM History',
 				items: [{
@@ -120,15 +156,25 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 	            id: 'portlet-31',
 				title: 'SDP ZFSSA Utilization',
 				items: [{
-					xtype: 'sdpzfssauutils',
-					border: false
+					xtype: 'stackedbarchart',
+					border: false,
+					height: 300,
+					series_label_convert: 'GB-TB',
+					store: 'SdpUtilsStore',
+					axes_field: ['used_zfssa_pct', 'free_zfssa_pct'],
+					cat_fields: ['box_alias'],
+					field_tile: ['Used Size', 'Free Size'],
+					xfield: 'box_name',
+					yfield: ['used_zfssa_pct', 'free_zfssa_pct'],
+					yfield_data: ['used_zfssa', 'free_zfssa']
 				}]
-			},{
-	            id: 'portlet-33',
+	        },{
+	            id: 'portlet-32',
 				title: 'SDP ZFSSA History',
 				items: [{
 					xtype: 'linechart3field',
 					border: false,
+					height: 200,
 					store: 'UtilsHistStore',
 					axes_field: ['SDP-SB_used_zfssa', 'SDP-JTN_used_zfssa', 'SDP-STL_used_zfssa'],
 					cat_fields: ['report_alias'],
@@ -143,13 +189,22 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s3_yfield: 'SDP-STL_used_zfssa'
 				}]
 	        },{
-	            id: 'portlet-32',
+	            id: 'portlet-33',
 				title: 'CRM ZFSSA Utilization',
 				items: [{
-					xtype: 'crmzfssauutils',
-					border: false
+					xtype: 'stackedbarchart',
+					border: false,
+					height: 300,
+					series_label_convert: 'GB-TB',
+					store: 'CrmUtilsStore',
+					axes_field: ['used_zfssa_pct', 'free_zfssa_pct'],
+					cat_fields: ['box_alias'],
+					field_tile: ['Used Size', 'Free Size'],
+					xfield: 'box_name',
+					yfield: ['used_zfssa_pct', 'free_zfssa_pct'],
+					yfield_data: ['used_zfssa', 'free_zfssa']
 				}]
-			},{
+	        },{
 	            id: 'portlet-34',
 				title: 'CRM ZFSSA History',
 				items: [{

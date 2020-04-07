@@ -27,7 +27,7 @@ Ext.define('CImeetsExtJS.view.exautils.template.LineChart3Field', {
 		
         Ext.apply(this, {
             layout: 'fit',
-            height: 200,
+            height: this.height,
             items: {
 				xtype: 'chart',
 	            animate: true,
