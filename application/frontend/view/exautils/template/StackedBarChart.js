@@ -56,6 +56,7 @@ Ext.define('CImeetsExtJS.view.exautils.template.StackedBarChart', {
 	                xField: this.xfield,
 	                yField: this.yfield,
 	                stacked: true,
+					theme: 'Base:gradients',
 					label: {
 		                contrast: true,
 		                display: 'insideEnd',

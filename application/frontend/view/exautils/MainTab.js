@@ -26,8 +26,10 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 					border: false,
 					utilstore: 'SdpJtnUtilStore',
 					datastore: 'SdpJtnDataStore',
+					detailstore: 'SdpJtnDetailStore',
 					tmpl_id: 'sdpjtn',
-					bar_chart_height: 655
+					bar_chart_height: 900,
+					gauge_chart_height: 220
 				}]
 			}, {
 				title: 'SDP STL Utilization Summary',
@@ -37,8 +39,10 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 					border: false,
 					utilstore: 'SdpStlUtilStore',
 					datastore: 'SdpStlDataStore',
+					detailstore: 'SdpStlDetailStore',
 					tmpl_id: 'sdpstl',
-					bar_chart_height: 655
+					bar_chart_height: 900,
+					gauge_chart_height: 220
 				}]
 			}, {
 				title: 'SDP SBY Utilization Summary',
@@ -48,8 +52,10 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 					border: false,
 					utilstore: 'SdpSbyUtilStore',
 					datastore: 'SdpSbyDataStore',
+					detailstore: 'SdpSbyDetailStore',
 					tmpl_id: 'sdpsby',
-					bar_chart_height: 250
+					bar_chart_height: 435,
+					gauge_chart_height: 220
 				}]
 			}, {
 				title: 'CRM JTN Utilization Summary',
@@ -59,8 +65,10 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 					border: false,
 					utilstore: 'CrmJtnUtilStore',
 					datastore: 'CrmJtnDataStore',
+					detailstore: 'CrmJtnDetailStore',
 					tmpl_id: 'crmjtn',
-					bar_chart_height: 250
+					bar_chart_height: 435,
+					gauge_chart_height: 220
 				}]
 			}, {
 				title: 'CRM STL Utilization Summary',
@@ -70,8 +78,10 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 					border: false,
 					utilstore: 'CrmStlUtilStore',
 					datastore: 'CrmStlDataStore',
+					detailstore: 'CrmStlDetailStore',
 					tmpl_id: 'crmstl',
-					bar_chart_height: 250
+					bar_chart_height: 435,
+					gauge_chart_height: 220
 				}]
 			}]
         });

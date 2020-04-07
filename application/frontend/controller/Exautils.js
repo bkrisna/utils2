@@ -11,6 +11,11 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'SdpSbyDataStore',
 		'CrmJtnDataStore',
 		'CrmStlDataStore',
+		'SdpSbyDetailStore',
+		'SdpJtnDetailStore',
+		'SdpStlDetailStore',
+		'CrmJtnDetailStore',
+		'CrmStlDetailStore',
 		'SdpUtilsStore',
 		'CrmUtilsStore',
 		'UtilsHistStore'
@@ -27,6 +32,11 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'SdpSbyDataModel',
 		'CrmJtnDataModel',
 		'CrmStlDataModel',
+		'SdpSbyDetailModel',
+		'SdpJtnDetailModel',
+		'SdpStlDetailModel',
+		'CrmJtnDetailModel',
+		'CrmStlDetailModel',
 		'SdpUtilsModel',
 		'CrmUtilsModel',
 		'UtilsHistModel'
@@ -49,7 +59,8 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		'exautils.template.StackedBarChart',
 		'exautils.template.ServerUtilsGrid',
 		'exautils.template.ServerDataGrid',
-		'exautils.template.MainContentPanel'
+		'exautils.template.MainContentPanel',
+		'exautils.template.3PieChart'
 	],
 
     refs: [{
@@ -86,6 +97,11 @@ Ext.define('CImeetsExtJS.controller.Exautils', {
 		this.getCrmJtnDataStoreStore().load({ params: { report_id: record } });
 		this.getCrmStlUtilStoreStore().load({ params: { report_id: record } });
 		this.getCrmStlDataStoreStore().load({ params: { report_id: record } });
+		this.getSdpJtnDetailStoreStore().load({ params: { report_id: record } });
+		this.getSdpStlDetailStoreStore().load({ params: { report_id: record } });
+		this.getSdpSbyDetailStoreStore().load({ params: { report_id: record } });
+		this.getCrmJtnDetailStoreStore().load({ params: { report_id: record } });
+		this.getCrmStlDetailStoreStore().load({ params: { report_id: record } });
 		
 	}
 });

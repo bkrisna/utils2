@@ -13,9 +13,6 @@ Ext.define('CImeetsExtJS.view.exautils.layout.TablePanel', {
         'CImeetsExtJS.view.exautils.layout.TableColumn'
     ],
 
-    //cls: 'x-portal',
-    //bodyCls: 'x-portal-body',
-    //defaultType: 'tablecolumn',
     autoScroll: true,
     manageHeight: false,
 
@@ -26,11 +23,11 @@ Ext.define('CImeetsExtJS.view.exautils.layout.TablePanel', {
         this.layout = {
             type : 'table',
 			columns: 3,
-			tableAttrs: {
+			/*tableAttrs: {
 				style: {
 					width: '100%',
 				}
-			},
+			},*/
 			tdAttrs: {
 				style: {
 					valign: 'top',

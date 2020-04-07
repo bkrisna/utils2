@@ -86,4 +86,16 @@ class Exautils extends MY_Controller {
 
 	    extjs_output($data);
 	}
+	
+	public function get_box_detail($box_id) {
+		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
+		$count = $this->Exautils_model->get_box_detail_count($box_id, $report_id);
+	    $entries = $this->Exautils_model->get_box_detail($box_id, $report_id);
+
+	    $data['success'] = true;
+	    $data['total'] = $count;
+	    $data['items'] = $entries;
+
+	    extjs_output($data);
+	}
 }

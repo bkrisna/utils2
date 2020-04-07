@@ -154,6 +154,49 @@ class Exautils_model extends CI_Model {
 		}
 	}
 	
+	function get_box_detail_count($box_id, $report_id) {
+		$qs = 'SELECT distinct(exalogic_boxes.id) as row_cnt FROM utilsdb.hosts_utils JOIN exalogic_boxes ON hosts_utils.box_id = exalogic_boxes.id WHERE hosts_utils.report_id = ? and hosts_utils.box_id = ? GROUP BY hosts_utils.box_id, hosts_utils.report_id';
+		$query = $this->db->query($qs, array($report_id, $box_id));
+		if ($query->num_rows() > 0) {
+			return $query->num_rows();
+		} else {
+			return 0;
+		}
+	}
+	
+    function get_box_detail($box_id, $report_id) {
+		$qs = 'SELECT box_utils.*,  zfssa_data.total_size as total_zfssa, zfssa_data.used_size as used_zfssa, zfssa_data.free_size as free_zfssa FROM  box_utils JOIN zfssa_data ON box_utils.box_id = zfssa_data.box_id AND box_utils.report_id = zfssa_data.report_id where box_utils.report_id = ? and box_utils.box_id = ?';
+		$query = $this->db->query($qs, array($report_id, $box_id));
+		if ($query->num_rows() > 0) {
+			$dt = array();
+			foreach ($query->result() as $itm) {
+				$i['report_id'] = $itm->report_id;
+				$i['box_id'] = $itm->box_id;
+				$i['box_name'] = $itm->box_name;
+				$i['box_alias'] = $itm->box_alias;
+				$i['total_vcpu'] = $itm->total_box_vcpu;
+				$i['used_vcpu'] = $itm->used_box_vcpu;
+				$i['used_vcpu_pct'] = round(($itm->used_box_vcpu/$itm->total_box_vcpu) * 100);
+				$i['free_vcpu'] = $itm->total_box_vcpu - $itm->used_box_vcpu;
+				$i['free_vcpu_pct'] = round((($itm->total_box_vcpu - $itm->used_box_vcpu)/$itm->total_box_vcpu) * 100);
+				$i['total_mem'] = $itm->total_box_mem;
+				$i['used_mem'] = $itm->used_box_mem;
+				$i['used_mem_pct'] = round(($itm->used_box_mem/$itm->total_box_mem) * 100);
+				$i['free_mem'] = $itm->total_box_mem - $itm->used_box_mem;
+				$i['free_mem_pct'] = round((($itm->total_box_mem - $itm->used_box_mem)/$itm->total_box_mem) * 100);
+				$i['total_zfssa'] = $itm->total_zfssa;
+				$i['used_zfssa'] = $itm->used_zfssa;
+				$i['used_zfssa_pct'] = round(($itm->used_zfssa/$itm->total_zfssa) * 100);
+				$i['free_zfssa'] = $itm->free_zfssa;
+				$i['free_zfssa_pct'] = round(($itm->free_zfssa/$itm->total_zfssa) * 100);
+				array_push($dt, $i);
+			}
+			return $dt;
+		} else {
+			return NULL;
+		}
+    }
+	
 	function get_exa_util_hist() {
 		$qs = "SELECT box_utils.*, utils_report.report_alias, zfssa_data.used_size as used_zfssa, zfssa_data.free_size as free_zfssa FROM utilsdb.box_utils JOIN utils_report ON box_utils.report_id = utils_report.report_id JOIN zfssa_data ON box_utils.box_id = zfssa_data.box_id AND box_utils.report_id = zfssa_data.report_id ORDER BY box_utils.report_id, box_utils.box_id";
 		$query = $this->db->query($qs);
