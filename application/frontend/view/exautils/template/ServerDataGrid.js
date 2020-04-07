@@ -1,7 +1,8 @@
-Ext.define('CImeetsExtJS.view.exautils.sdpjtn.SdpJtnDataPanel', {
+Ext.define('CImeetsExtJS.view.exautils.template.ServerDataGrid', {
 
     extend: 'Ext.grid.Panel',
-    alias: 'widget.sdpjtndata',
+    alias: 'widget.serverdatagrid',
+	store: '',
 
     requires: [
         'Ext.data.JsonStore'
@@ -10,13 +11,12 @@ Ext.define('CImeetsExtJS.view.exautils.sdpjtn.SdpJtnDataPanel', {
     initComponent: function(){
 
         Ext.apply(this, {
-            //height: 300,
             height: this.height,
-            store: 'SdpJtnDataStore',
+            store: this.store,
             stripeRows: true,
             columnLines: true,
             columns: [{
-            	id: 'id',
+            	id: 'jtn-id',
 				dataIndex: 'id',
 				hidden: true
             },{

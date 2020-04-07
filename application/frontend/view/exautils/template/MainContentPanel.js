@@ -1,6 +1,6 @@
-Ext.define('CImeetsExtJS.view.exautils.maincontent.SdpJtnPanel', {
+Ext.define('CImeetsExtJS.view.exautils.template.MainContentPanel', {
     extend: 'Ext.panel.Panel',
-	alias: 'widget.exautils-sdpjtnpanel',
+	alias: 'widget.maincontentpanel',
 	border: false,
 	layout: 'fit',
 	defaults: {
@@ -10,21 +10,25 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.SdpJtnPanel', {
 	
 	utilstore: '',
 	datastore: '',
+	tmpl_id: '',
+	bar_chart_height: '',
+	svrgrid_height: '',
+	datagrid_height: '',
 	
 	
 	initComponent: function(){
 		Ext.apply(this, {
 			items: [{
-		        id: 'sdpjtn-portal',
+		        id: this.tmpl_id + '-portal',
 		        xtype: 'tablepanel',
 		        items: [{
-					id: 'portletsdpjtn-1',
+					id: this.tmpl_id +'prlt-1',
 					xtype: 'portlet',
 					title: 'Compute Node vCPU Utilization',
 					items: [{
 							xtype: 'stackedbarchart',
 							border: false,
-							height: 655,
+							height: this.bar_chart_height,
 							store: this.utilstore,
 							axes_field: ['used_vcpu_pct', 'free_vcpu_pct'],
 							cat_fields: ['hostalias'],
@@ -34,13 +38,13 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.SdpJtnPanel', {
 							yfield_data: ['used_vcpu', 'free_vcpu']
 						}]
 				},{
-					id: 'portletsdpjtn-2',
+					id: this.tmpl_id +'prlt-2',
 					xtype: 'portlet',
 					title: 'Compute Node MEM Utilization',
 					items: [{
 							xtype: 'stackedbarchart',
 							border: false,
-							height: 655,
+							height: this.bar_chart_height,
 							series_label_convert: 'MB-GB',
 							store: this.utilstore,
 							axes_field: ['used_mem_pct', 'free_mem_pct'],
@@ -51,7 +55,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.SdpJtnPanel', {
 							yfield_data: ['used_mem', 'free_mem']
 						}]
 				},{
-					id: 'portletsdpjtn-3',
+					id: this.tmpl_id +'prlt-3',
 					xtype: 'portlet',
 					title: 'Compute Node Utilization',
 					items: [{
@@ -60,7 +64,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.SdpJtnPanel', {
 						store: this.utilstore
 					}]
 				},{
-					id: 'portletsdpjtn-5',
+					id: this.tmpl_id +'prlt-4',
 					xtype: 'portlet',
 					title: 'Compute Node Utilization Data',
 					colspan: 3,

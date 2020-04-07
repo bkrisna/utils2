@@ -7,8 +7,6 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 		autoScroll: true,
 	},
 	activeTab: 0,
-	//title: 'Exalogic Utilization Report',
-	report_id: 0,
 	
 	initComponent: function() {
 		Ext.apply(this, {
@@ -18,42 +16,62 @@ Ext.define('CImeetsExtJS.view.exautils.MainTab' ,{
 				border: false,
 				items: [{
 					xtype: 'exautils-overview',
-					border: false
+					border: false,
 				}]
 			}, {
 				title: 'SDP JTN Utilization Summary',
 				border: false,
 				items: [{
-					xtype: 'exautils-sdpjtnpanel',
-					border: false
+					xtype: 'maincontentpanel',
+					border: false,
+					utilstore: 'SdpJtnUtilStore',
+					datastore: 'SdpJtnDataStore',
+					tmpl_id: 'sdpjtn',
+					bar_chart_height: 655
 				}]
 			}, {
 				title: 'SDP STL Utilization Summary',
 				border: false,
 				items: [{
-					xtype: 'exautils-sdpstlpanel',
-					border: false
+					xtype: 'maincontentpanel',
+					border: false,
+					utilstore: 'SdpStlUtilStore',
+					datastore: 'SdpStlDataStore',
+					tmpl_id: 'sdpstl',
+					bar_chart_height: 655
 				}]
 			}, {
 				title: 'SDP SBY Utilization Summary',
 				border: false,
 				items: [{
-					xtype: 'exautils-sdpsbypanel',
-					border: false
+					xtype: 'maincontentpanel',
+					border: false,
+					utilstore: 'SdpSbyUtilStore',
+					datastore: 'SdpSbyDataStore',
+					tmpl_id: 'sdpsby',
+					bar_chart_height: 250
 				}]
 			}, {
 				title: 'CRM JTN Utilization Summary',
 				border: false,
 				items: [{
-					xtype: 'exautils-crmjtnpanel',
-					border: false
+					xtype: 'maincontentpanel',
+					border: false,
+					utilstore: 'CrmJtnUtilStore',
+					datastore: 'CrmJtnDataStore',
+					tmpl_id: 'crmjtn',
+					bar_chart_height: 250
 				}]
 			}, {
 				title: 'CRM STL Utilization Summary',
 				border: false,
 				items: [{
-					xtype: 'exautils-crmstlpanel',
-					border: false
+					xtype: 'maincontentpanel',
+					border: false,
+					utilstore: 'CrmStlUtilStore',
+					datastore: 'CrmStlDataStore',
+					tmpl_id: 'crmstl',
+					bar_chart_height: 250
 				}]
 			}]
         });

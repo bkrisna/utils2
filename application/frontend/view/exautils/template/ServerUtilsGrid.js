@@ -1,7 +1,8 @@
-Ext.define('CImeetsExtJS.view.exautils.sdpjtn.SdpJtnSrvPanel', {
+Ext.define('CImeetsExtJS.view.exautils.template.ServerUtilsGrid', {
 
     extend: 'Ext.grid.Panel',
-    alias: 'widget.sdpjtnsrvpanel',
+    alias: 'widget.serverutilsgrid',
+	store: '',
 
     requires: [
         'Ext.data.JsonStore'
@@ -11,7 +12,7 @@ Ext.define('CImeetsExtJS.view.exautils.sdpjtn.SdpJtnSrvPanel', {
 
         Ext.apply(this, {
             height: this.height,
-            store: 'SdpJtnUtilStore',
+            store: this.store,
             stripeRows: true,
             columnLines: true,
             columns: [{
