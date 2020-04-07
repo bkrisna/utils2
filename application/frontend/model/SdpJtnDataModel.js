@@ -41,7 +41,7 @@ Ext.define('CImeetsExtJS.model.SdpJtnDataModel', {
     proxy: {
         type: 'custProxy',
         api: {
-            read: 'exautils/get_sdp_jtn_data',
+            read: 'exautils/get_box_data/2',
         },
         reader: {
             type: 'json',

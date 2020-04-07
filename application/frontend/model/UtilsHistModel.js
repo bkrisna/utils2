@@ -59,7 +59,7 @@ Ext.define('CImeetsExtJS.model.UtilsHistModel', {
     proxy: {
         type: 'custProxy',
         api: {
-            read: 'exautils/get_sdp_utils_hist',
+            read: 'exautils/get_exa_utils_hist',
         },
         reader: {
             type: 'json',

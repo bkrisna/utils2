@@ -80,44 +80,6 @@ class Exautils_model extends CI_Model {
 		}
     }
 	
-	function get_box_utils_hist_count($env) {
-		$qs = 'SELECT box_utils.box_id  FROM  box_utils where box_utils.box_env = ?';
-		$query = $this->db->query($qs, array($env, $report_id));
-		if ($query->num_rows() > 0) {
-			return $query->num_rows();
-		} else {
-			return 0;
-		}
-	}
-	
-	function get_box_utils_hist($env) {
-		$qs = 'SELECT box_utils.*,  zfssa_data.total_size as total_zfssa, zfssa_data.used_size as used_zfssa, zfssa_data.free_size as free_zfssa, utils_report.report_alias FROM  box_utils JOIN zfssa_data ON box_utils.box_id = zfssa_data.box_id AND box_utils.report_id = zfssa_data.report_id JOIN utils_report ON box_utils.report_id = utils_report.report_id where box_utils.box_env = ?';
-		$query = $this->db->query($qs, array($env));
-		if ($query->num_rows() > 0) {
-			$dt = array();
-			foreach ($query->result() as $itm) {
-				$i['report_id'] = $itm->report_id;
-				$i['box_id'] = $itm->box_id;
-				$i['box_name'] = $itm->box_name;
-				$i['box_alias'] = $itm->box_alias;
-				$i['total_vcpu'] = $itm->total_box_vcpu;
-				$i['used_vcpu'] = $itm->used_box_vcpu;
-				$i['free_vcpu'] = $itm->total_box_vcpu - $itm->used_box_vcpu;
-				$i['total_mem'] = $itm->total_box_mem;
-				$i['used_mem'] = $itm->used_box_mem;
-				$i['free_mem'] = $itm->total_box_mem - $itm->used_box_mem;
-				$i['total_zfssa'] = $itm->total_zfssa;
-				$i['used_zfssa'] = $itm->used_zfssa;
-				$i['free_zfssa'] = $itm->free_zfssa;
-				$i['report_alias'] = $itm->report_alias;
-				array_push($dt, $i);
-			}
-			return $dt;
-		} else {
-			return NULL;
-		}
-	}
-	
 	function get_server_utils_count($box_id, $report_id) {
 		$qs = 'SELECT * FROM utilsdb.hosts_utils where box_id = ? and report_id = ?';
 		$query = $this->db->query($qs, array($box_id, $report_id));
@@ -192,7 +154,7 @@ class Exautils_model extends CI_Model {
 		}
 	}
 	
-	function get_vcpu_util_hist() {
+	function get_exa_util_hist() {
 		$qs = "SELECT box_utils.*, utils_report.report_alias, zfssa_data.used_size as used_zfssa, zfssa_data.free_size as free_zfssa FROM utilsdb.box_utils JOIN utils_report ON box_utils.report_id = utils_report.report_id JOIN zfssa_data ON box_utils.box_id = zfssa_data.box_id AND box_utils.report_id = zfssa_data.report_id ORDER BY box_utils.report_id, box_utils.box_id";
 		$query = $this->db->query($qs);
 		if ($query->num_rows() > 0) {
@@ -211,7 +173,6 @@ class Exautils_model extends CI_Model {
 				array_push($res2, $res_itm);
 			}
 			return $res2;
-			//return $query->result();
 		} else {
 			return NULL;
 		}

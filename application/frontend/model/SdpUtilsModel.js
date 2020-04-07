@@ -65,7 +65,7 @@ Ext.define('CImeetsExtJS.model.SdpUtilsModel', {
     proxy: {
         type: 'custProxy',
         api: {
-            read: 'exautils/get_sdp_utils',
+            read: 'exautils/get_utils/SDP',
         },
         reader: {
             type: 'json',

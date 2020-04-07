@@ -38,22 +38,8 @@ class Exautils extends MY_Controller {
 	    extjs_output($data);
 	}
 	
-	public function get_sdp_utils() {
-	    
-	    $report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_box_utils_count($report_id, "SDP");
-	    $entries = $this->Exautils_model->get_box_utils($report_id, "SDP");
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_sdp_utils_hist() {
-		$res = $this->Exautils_model->get_vcpu_util_hist();
+	public function get_exa_utils_hist() {
+		$res = $this->Exautils_model->get_exa_util_hist();
 		$count = isset($res) ? count($res) : 0;
 	    $entries = $res;
 	    $data['success'] = true;
@@ -63,12 +49,12 @@ class Exautils extends MY_Controller {
 	   
 	}
 	
-	public function get_crm_utils() {
+	public function get_utils($env) {
 	    
 	    $report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
 		
-		$count = $this->Exautils_model->get_box_utils_count($report_id, "CRM");
-	    $entries = $this->Exautils_model->get_box_utils($report_id, "CRM");
+		$count = $this->Exautils_model->get_box_utils_count($report_id, $env);
+	    $entries = $this->Exautils_model->get_box_utils($report_id, $env);
 
 	    $data['success'] = true;
 	    $data['total'] = $count;
@@ -77,10 +63,10 @@ class Exautils extends MY_Controller {
 	    extjs_output($data);
 	}
 	
-	public function get_crm_utils_hist() {
-	    
-	    $count = $this->Exautils_model->get_box_utils_hist_count("CRM");
-	    $entries = $this->Exautils_model->get_box_utils_hist("CRM");
+	public function get_box_util($box_id) {
+	    $report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
+		$count = $this->Exautils_model->get_server_utils_count($box_id, $report_id);
+	    $entries = $this->Exautils_model->get_server_utils($box_id, $report_id);
 
 	    $data['success'] = true;
 	    $data['total'] = $count;
@@ -89,138 +75,10 @@ class Exautils extends MY_Controller {
 	    extjs_output($data);
 	}
 	
-	public function get_sdp_jtn_util() {
-	    
+	public function get_box_data($box_id) {
 		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_server_utils_count('2', $report_id);
-	    $entries = $this->Exautils_model->get_server_utils('2', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_sdp_jtn_data() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_box_data_count('2', $report_id);
-	    $entries = $this->Exautils_model->get_box_data('2', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_sdp_stl_util() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_server_utils_count('3', $report_id);
-	    $entries = $this->Exautils_model->get_server_utils('3', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_sdp_stl_data() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_box_data_count('3', $report_id);
-	    $entries = $this->Exautils_model->get_box_data('3', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_sdp_sby_util() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_server_utils_count('1', $report_id);
-	    $entries = $this->Exautils_model->get_server_utils('1', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_sdp_sby_data() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_box_data_count('1', $report_id);
-	    $entries = $this->Exautils_model->get_box_data('1', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_crm_jtn_util() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_server_utils_count('4', $report_id);
-	    $entries = $this->Exautils_model->get_server_utils('4', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_crm_jtn_data() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_box_data_count('4', $report_id);
-	    $entries = $this->Exautils_model->get_box_data('4', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_crm_stl_util() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_server_utils_count('5', $report_id);
-	    $entries = $this->Exautils_model->get_server_utils('5', $report_id);
-
-	    $data['success'] = true;
-	    $data['total'] = $count;
-	    $data['items'] = $entries;
-
-	    extjs_output($data);
-	}
-	
-	public function get_crm_stl_data() {
-	    
-		$report_id = $this->input->get('report_id', TRUE) > '' ? $this->input->get('report_id', TRUE) : 3;
-		
-		$count = $this->Exautils_model->get_box_data_count('5', $report_id);
-	    $entries = $this->Exautils_model->get_box_data('5', $report_id);
+		$count = $this->Exautils_model->get_box_data_count($box_id, $report_id);
+	    $entries = $this->Exautils_model->get_box_data($box_id, $report_id);
 
 	    $data['success'] = true;
 	    $data['total'] = $count;

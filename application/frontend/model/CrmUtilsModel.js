@@ -65,7 +65,7 @@ Ext.define('CImeetsExtJS.model.CrmUtilsModel', {
     proxy: {
         type: 'custProxy',
         api: {
-            read: 'exautils/get_crm_utils',
+            read: 'exautils/get_utils/CRM',
         },
         reader: {
             type: 'json',
