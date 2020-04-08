@@ -31,7 +31,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart3field',
 					border: false,
-					height: 200,
+					height: 300,
 					store: 'UtilsHistStore',
 					axes_field: ['SDP-SB_used_vcpu', 'SDP-JTN_used_vcpu', 'SDP-STL_used_vcpu'],
 					cat_fields: ['report_alias'],
@@ -66,7 +66,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart2field',
 					border: false,
-					height: 200,
+					height: 300,
 					store: 'UtilsHistStore',
 					axes_field: ['CRM-JTN_used_vcpu', 'CRM-STL_used_vcpu'],
 					cat_fields: ['report_alias'],
@@ -75,7 +75,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s1_yfield: 'CRM-JTN_used_vcpu',
 					s2_title: 'CRM-STL',
 					s2_xfield: 'report_id',
-					s2_yfield: 'CRM-STL_used_vcpu'
+					s2_yfield: 'CRM-STL_used_vcpu',
 				}]
 	        }]
         }, {
@@ -102,7 +102,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart3field',
 					border: false,
-					height: 200,
+					height: 300,
 					store: 'UtilsHistStore',
 					axes_field: ['SDP-SB_used_mem', 'SDP-JTN_used_mem', 'SDP-STL_used_mem'],
 					cat_fields: ['report_alias'],
@@ -114,7 +114,8 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s2_yfield: 'SDP-JTN_used_mem',
 					s3_title: 'SDP-STL',
 					s3_xfield: 'report_id',
-					s3_yfield: 'SDP-STL_used_mem'
+					s3_yfield: 'SDP-STL_used_mem',
+					series_label_convert: 'MB-TB',
 				}]
 	        },{
 	            id: 'portlet-23',
@@ -138,7 +139,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart2field',
 					border: false,
-					height: 200,
+					height: 300,
 					store: 'UtilsHistStore',
 					axes_field: ['CRM-JTN_used_mem', 'CRM-STL_used_mem'],
 					cat_fields: ['report_alias'],
@@ -147,7 +148,8 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s1_yfield: 'CRM-JTN_used_mem',
 					s2_title: 'CRM-STL',
 					s2_xfield: 'report_id',
-					s2_yfield: 'CRM-STL_used_mem'
+					s2_yfield: 'CRM-STL_used_mem',
+					series_label_convert: 'MB-TB',
 				}]
 	        }]
         }, {
@@ -174,7 +176,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart3field',
 					border: false,
-					height: 200,
+					height: 300,
 					store: 'UtilsHistStore',
 					axes_field: ['SDP-SB_used_zfssa', 'SDP-JTN_used_zfssa', 'SDP-STL_used_zfssa'],
 					cat_fields: ['report_alias'],
@@ -186,7 +188,8 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s2_yfield: 'SDP-JTN_used_zfssa',
 					s3_title: 'SDP-STL',
 					s3_xfield: 'report_id',
-					s3_yfield: 'SDP-STL_used_zfssa'
+					s3_yfield: 'SDP-STL_used_zfssa',
+					series_label_convert: 'GB-TB',
 				}]
 	        },{
 	            id: 'portlet-33',
@@ -210,7 +213,7 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 				items: [{
 					xtype: 'linechart2field',
 					border: false,
-					height: 200,
+					height: 300,
 					store: 'UtilsHistStore',
 					axes_field: ['CRM-JTN_used_zfssa', 'CRM-STL_used_zfssa'],
 					cat_fields: ['report_alias'],
@@ -219,7 +222,8 @@ Ext.define('CImeetsExtJS.view.exautils.maincontent.OverviewPanel', {
 					s1_yfield: 'CRM-JTN_used_zfssa',
 					s2_title: 'CRM-STL',
 					s2_xfield: 'report_id',
-					s2_yfield: 'CRM-STL_used_zfssa'
+					s2_yfield: 'CRM-STL_used_zfssa',
+					series_label_convert: 'GB-TB',
 				}]
 	        }]
         }]

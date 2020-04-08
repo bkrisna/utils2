@@ -11,6 +11,7 @@ Ext.define('CImeetsExtJS.view.exautils.template.LineChart2Field', {
 	s2_tile: '',
 	s2_xfield: '',
 	s2_yfield: '',
+	series_label_convert: '',
 
     requires: [
 		'Ext.data.JsonStore',
@@ -47,11 +48,33 @@ Ext.define('CImeetsExtJS.view.exautils.template.LineChart2Field', {
 	                        stroke: '#bbb',
 	                        'stroke-width': 0.5
 	                    }
-	                }
+	                },
+					label: {
+						label_convert: this.series_label_convert,
+		                renderer: function(value) {
+							if (this.label_convert == 'MB-TB') {
+								return +(Math.round((value/(1024*1024)) + "e+2") + "e-2") + ' TB';
+							}
+							if (this.label_convert == 'MB-GB') {
+								return +(Math.round((value/(1024)) + "e+2") + "e-2") + ' GB';
+							}
+							if (this.label_convert == 'GB-TB') {
+								return +(Math.round((value/(1024)) + "e+2") + "e-2") + ' TB';
+							}
+							else {
+								return value
+							}
+		                }
+		            }
 	            }, {
 	                type: 'Category',
 	                position: 'bottom',
-	                fields: [ this.cat_fields ]
+	                fields: [ this.cat_fields ],
+					label: {
+			            rotate: {
+			                degrees: 315
+			            }
+			        }
 	            }],
 	            series: [{
 					title: [this.s1_title],
