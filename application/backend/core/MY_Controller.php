@@ -7,6 +7,7 @@ class MY_Controller extends CI_Controller {
 		
 		//requires login
 		try {
+			 
 			if (is_object(json_decode(get_cookie(APP_NAME.'_access')))) {
 				$this->load->model('Users_model');
 				$user_cookie = json_decode(get_cookie(APP_NAME.'_access'));
@@ -19,6 +20,7 @@ class MY_Controller extends CI_Controller {
 			} else {
 				$this->_denyUser();
 			}
+			
 		} catch (Exception $e) {
 			$data['success'] = false;
 			$data['code'] = $e->getCode();

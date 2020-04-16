@@ -2,7 +2,7 @@
 
     # activate URL rewriting
     RewriteEngine on
-
+	
     # do not rewrite links to the documentation, assets and public files
     RewriteCond $1 !^(resources|system|application)
 

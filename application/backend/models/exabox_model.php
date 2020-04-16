@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Utildata_model extends CI_Model {
+class Exabox_model extends CI_Model {
 
 	private $table;
 	private $table_fields;
@@ -9,23 +9,19 @@ class Utildata_model extends CI_Model {
     function __construct() {
         parent::__construct();
 
-		$this->table = 'utils_data';
+		$this->table = 'exalogic_boxes';
 
 		$this->table_fields = array(
 			$this->table.'.id',
-			$this->table.'.report_id',
-			$this->table.'.server_id',
-			$this->table.'.vmname',
-			$this->table.'.vcpu',
-			$this->table.'.memory',
-			$this->table.'.osstor',
-			$this->table.'.attachedstor',
-			$this->table.'.ipaddress',
-			$this->table.'.hostname',
-			$this->table.'.os',
-			$this->table.'.env',
-			$this->table.'.note',
-			$this->table.'.state'
+			$this->table.'.box_name',
+			$this->table.'.box_site',
+			$this->table.'.box_env',
+			$this->table.'.box_alias',
+			$this->table.'.box_ip',
+			$this->table.'.iaas_user',
+			$this->table.'.iaas_pass',
+			$this->table.'.ovmm_user',
+			$this->table.'.ovmm_pass',
 		);
 
 		$this->table_fields_join = array();
@@ -61,7 +57,6 @@ class Utildata_model extends CI_Model {
     }
 	
     function get_entry($filter = array()) {
-		
 		$this->db->select(implode(', ', array_merge($this->table_fields, $this->table_fields_join)));
 		$this->db->from($this->table);
 

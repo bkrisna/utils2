@@ -50,6 +50,21 @@ class Report_model extends CI_Model {
 
         return $this->db->count_all_results();
     }
+	
+    function get_entry($filter = array()) {
+		$this->db->select(implode(', ', array_merge($this->table_fields, $this->table_fields_join)));
+		$this->db->from($this->table);
+
+		$this->db->where($filter);
+
+		$query = $this->db->get();
+
+		if ($query->num_rows > 0) {
+		    return $query->result();
+		} else {
+		    return false;
+		}
+    }
 
     function insert_entry($data) {
         $this->db->insert($this->table, $data);
@@ -62,8 +77,8 @@ class Report_model extends CI_Model {
     }
 
     function update_entry($filter = array(), $data) {
-        if (is_array($filter) && count($filter) > 0) generate_filter($filter);
-
+        //if (is_array($filter) && count($filter) > 0) generate_filter($filter);
+		$this->db->where($filter);
         $this->db->update($this->table, $data);
 
         if($this->db->affected_rows() == 1) {
@@ -73,9 +88,9 @@ class Report_model extends CI_Model {
         }
     }
 
-    function delete_enry($filter = array()) {
-        if (is_array($filter) && count($filter) > 0) generate_filter($filter);
-
+    function delete_entry($filter = array()) {
+        //if (is_array($filter) && count($filter) > 0) generate_filter($filter);
+		$this->db->where($filter);
         $this->db->delete($this->table);
 
         if($this->db->affected_rows() > 0) {
@@ -85,16 +100,16 @@ class Report_model extends CI_Model {
         }
     }
 	
-	function get_data_from_alias($report_alias) {
-		
-		$qs = 'SELECT '. implode(', ',$this->table_fields) .' FROM '. $this->table .' where report_alias = ?';
-		$query = $this->db->query($qs, array($report_alias));
-
-		if ($query->num_rows > 0) {
-		    return $query->result();
+	function get_id_by_alias($alias) {
+		$qs = $this->get_entry(array('report_alias' => $alias));
+		if ($qs) {
+			$rep_id = '';
+			foreach ($qs as $qsitm) {
+				$rep_id = array('report_id' => $qsitm->report_id);
+			}
+			return $rep_id;
 		} else {
-		    return false;
+			return false;
 		}
 	}
-
 }
