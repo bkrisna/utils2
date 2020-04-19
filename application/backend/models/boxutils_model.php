@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Report_model extends CI_Model {
+class Boxutils_model extends CI_Model {
 
 	private $table;
 	private $table_fields;
@@ -9,14 +9,15 @@ class Report_model extends CI_Model {
     function __construct() {
         parent::__construct();
 
-		$this->table = 'utils_report';
+		$this->table = 'exalogic_servers';
 
 		$this->table_fields = array(
-			$this->table.'.report_id',
-			$this->table.'.report_name',
-			$this->table.'.report_alias',
-			$this->table.'.date_created',
-			$this->table.'.last_update'
+			$this->table.'.id',
+			$this->table.'.box_id',
+			$this->table.'.hostname',
+			$this->table.'.alias',
+			$this->table.'.vcpu',
+			$this->table.'.memory'
 		);
 
 		$this->table_fields_join = array();
@@ -68,6 +69,7 @@ class Report_model extends CI_Model {
 
     function insert_entry($data) {
         $this->db->insert($this->table, $data);
+
         if($this->db->affected_rows() == 1) {
             return $this->db->insert_id();
         } else {
@@ -76,6 +78,7 @@ class Report_model extends CI_Model {
     }
 
     function update_entry($filter = array(), $data) {
+        //if (is_array($filter) && count($filter) > 0) generate_filter($filter);
 		$this->db->where($filter);
         $this->db->update($this->table, $data);
 
@@ -87,7 +90,8 @@ class Report_model extends CI_Model {
     }
 
     function delete_entry($filter = array()) {
-        $this->db->where($filter);
+        //if (is_array($filter) && count($filter) > 0) generate_filter($filter);
+		$this->db->where($filter);
         $this->db->delete($this->table);
 
         if($this->db->affected_rows() > 0) {
@@ -96,17 +100,4 @@ class Report_model extends CI_Model {
             return false;
         }
     }
-	
-	function get_id_by_alias($alias) {
-		$qs = $this->get_entry(array('report_alias' => $alias));
-		if ($qs) {
-			$rep_id = '';
-			foreach ($qs as $qsitm) {
-				$rep_id = array('report_id' => $qsitm->report_id);
-			}
-			return $rep_id;
-		} else {
-			return false;
-		}
-	}
 }

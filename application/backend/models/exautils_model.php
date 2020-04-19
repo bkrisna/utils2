@@ -80,6 +80,39 @@ class Exautils_model extends CI_Model {
 		}
     }
 	
+    function get_box_utils2($report_id, $env) {
+		$qs = 'SELECT box_utils.*,  zfssa_data.total_size as total_zfssa, zfssa_data.used_size as used_zfssa, zfssa_data.free_size as free_zfssa FROM  box_utils JOIN zfssa_data ON box_utils.box_id = zfssa_data.box_id AND box_utils.report_id = zfssa_data.report_id where box_utils.report_id = ? and box_utils.box_env = ?';
+		$query = $this->db->query($qs, array($report_id, $env));
+		if ($query->num_rows() > 0) {
+			$dt = array();
+			foreach ($query->result() as $itm) {
+				$i['report_id'] = $itm->report_id;
+				$i['box_id'] = $itm->box_id;
+				$i['box_name'] = $itm->box_name;
+				$i['box_alias'] = $itm->box_alias;
+				$i['total_vcpu'] = $itm->total_box_vcpu;
+				$i['used_vcpu'] = $itm->used_box_vcpu;
+				$i['used_vcpu_pct'] = round(($itm->used_box_vcpu/$itm->total_box_vcpu) * 100);
+				$i['free_vcpu'] = $itm->total_box_vcpu - $itm->used_box_vcpu;
+				$i['free_vcpu_pct'] = round((($itm->total_box_vcpu - $itm->used_box_vcpu)/$itm->total_box_vcpu) * 100);
+				$i['total_mem'] = $itm->total_box_mem;
+				$i['used_mem'] = $itm->used_box_mem;
+				$i['used_mem_pct'] = round(($itm->used_box_mem/$itm->total_box_mem) * 100);
+				$i['free_mem'] = $itm->total_box_mem - $itm->used_box_mem;
+				$i['free_mem_pct'] = round((($itm->total_box_mem - $itm->used_box_mem)/$itm->total_box_mem) * 100);
+				$i['total_zfssa'] = $itm->total_zfssa;
+				$i['used_zfssa'] = $itm->used_zfssa;
+				$i['used_zfssa_pct'] = round(($itm->used_zfssa/$itm->total_zfssa) * 100);
+				$i['free_zfssa'] = $itm->free_zfssa;
+				$i['free_zfssa_pct'] = round(($itm->free_zfssa/$itm->total_zfssa) * 100);
+				array_push($dt, $i);
+			}
+			return $dt;
+		} else {
+			return NULL;
+		}
+    }
+	
 	function get_server_utils_count($box_id, $report_id) {
 		$qs = 'SELECT * FROM utilsdb.hosts_utils where box_id = ? and report_id = ?';
 		$query = $this->db->query($qs, array($box_id, $report_id));

@@ -22,6 +22,10 @@ class Exabox_model extends CI_Model {
 			$this->table.'.iaas_pass',
 			$this->table.'.ovmm_user',
 			$this->table.'.ovmm_pass',
+			$this->table.'.zfssa1_ip',
+			$this->table.'.zfssa2_ip',
+			$this->table.'.zfssa_user',
+			$this->table.'.zfssa_pass'
 		);
 
 		$this->table_fields_join = array();
