@@ -14,6 +14,7 @@ class Exautils extends MY_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('Exautils_model');
+		$this->load->model('Report_model');
     }
 
 	/**
@@ -28,9 +29,10 @@ class Exautils extends MY_Controller {
 	}
 
 	public function get_report_list() {
-		$count = $this->Exautils_model->get_report_list_count();
-	    $entries = $this->Exautils_model->get_report_list();
-
+		$report_name = $this->input->get('query', TRUE) > '' ? $this->input->get('query', TRUE) : '';
+		$count = ($report_name != '') ? $this->Report_model->count_entry("report_name like '%".$report_name."%'") : $this->Report_model->count_entry();
+	    $entries = ($report_name != '') ? $this->Report_model->get_entry("report_name like '%".$report_name."%'") : $this->Report_model->get_entry(); 
+		
 	    $data['success'] = true;
 	    $data['total'] = $count;
 	    $data['items'] = $entries;

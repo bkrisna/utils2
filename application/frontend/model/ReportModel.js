@@ -9,18 +9,5 @@ Ext.define('CImeetsExtJS.model.ReportModel', {
         type: 'string'
     }],
     
-    idProperty: 'report_id',
-    
-    proxy: {
-        type: 'custProxy',
-        api: {
-            read: 'exautils/get_report_list',
-        },
-        reader: {
-            type: 'json',
-            root: 'items',
-            totalProperty: 'total',
-            successProperty: 'success'
-        },
-    }
+    idProperty: 'report_id'
 });

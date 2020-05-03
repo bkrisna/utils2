@@ -65,6 +65,12 @@ class Report_model extends CI_Model {
 		    return false;
 		}
     }
+	
+	function count_entry($filter = array()) {
+        $this->db->from($this->table);
+		$this->db->where($filter);
+        return $this->db->count_all_results();
+	}
 
     function insert_entry($data) {
         $this->db->insert($this->table, $data);

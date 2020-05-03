@@ -10,28 +10,22 @@ Ext.define('CImeetsExtJS.view.exautils.Surface', {
             bodyPadding: 0,
 			
 			title: 'Exalogic Utilization Report',
-			
+			 
 			dockedItems: [{
 				xtype: 'toolbar',
 				items: [{
-	                xtype: 'combo',
-					width: 400,
-	                fieldLabel: 'Report Period',
-	                store: Ext.create('CImeetsExtJS.store.ReportStore'),
-	                minChars : 0 ,
-	                displayField: 'report_name',
-	                valueField: 'report_id',
-					blankText: 'Select Report Period',
-					emptyText: '-- Select Report Period --',
-					allowBlank: false,
-					editable: false,
-	            },'-',{
 					xtype: 'button',
 					iconCls: 'fam find',
 					itemId: 'find',
-					text: 'Load Report',
+					text: 'Select Report',
 					action: 'loadreport'
-				},]
+				},{
+					xtype: 'button',
+					iconCls: 'fam save',
+					itemId: 'save',
+					text: 'Export to Excel',
+					action: 'exportToExcel'
+				}]
 			}],
             
             items: [{

@@ -1,4 +1,5 @@
 Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '../system/extjs/examples/ux/');
 
 Ext.require('Ext.data.StoreManager', function() {
     var messages = {
@@ -72,5 +73,8 @@ Ext.application({
 
 Ext.define('GlobalVars', {
     singleton: true,
-    userdata: Ext.decode(Ext.util.Cookies.get('cimeetsextjs_access'))
+    userdata: Ext.decode(Ext.util.Cookies.get('cimeetsextjs_access')),
+	report_data: '',
+	report_id: '',
+	report_name: ''
 });
