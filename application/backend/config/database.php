@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'utilsadm';
-$db['default']['password'] = 'Welcome.2.Mysql';
+$db['default']['password'] = 'Welcome.2.MYSQL';
 $db['default']['database'] = 'utilsdb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
